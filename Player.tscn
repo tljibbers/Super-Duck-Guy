@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Chicken-Guy-idle2.png" type="Texture" id=1]
+[ext_resource path="res://Chicken-Guy-idle1.png" type="Texture" id=2]
+[ext_resource path="res://Player.gd" type="Script" id=3]
+[ext_resource path="res://Chicken-Guy-Run2.png" type="Texture" id=4]
+[ext_resource path="res://Chicken-Guy-Death.png" type="Texture" id=5]
+[ext_resource path="res://Chicken-Guy-jump3.png" type="Texture" id=6]
+[ext_resource path="res://Chicken-Guy-Warp.png" type="Texture" id=7]
+[ext_resource path="res://Chicken-Guy-Run1.png" type="Texture" id=8]
+[ext_resource path="res://sfx_jump_07-80241.wav" type="AudioStream" id=9]
+[ext_resource path="res://collectcoin-6075.wav" type="AudioStream" id=10]
+[ext_resource path="res://dead-8bit-41400.wav" type="AudioStream" id=11]
+[ext_resource path="res://winsquare-6993.mp3" type="AudioStream" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Sprint",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Warp",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 12 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( -2, 139 )
+collision_layer = 2
+script = ExtResource( 3 )
+JUMP_FORCE = -160
+JUMP_RELEASE_FORCE = -40
+MAX_SPEED = 100
+GRAVITY = 5
+ADDITIONAL_FALL_GRAVITY = 2
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Run"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = -16
+limit_bottom = 175
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -24 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 3 )
+texture = ExtResource( 5 )
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[node name="Coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -10.0

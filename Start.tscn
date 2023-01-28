@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://8-BIT WONDER.TTF" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 2
+outline_color = Color( 0, 0, 0.0392157, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Start" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+color = Color( 0.152941, 0.572549, 0.776471, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 60.0831
+margin_top = 76.7105
+margin_right = 268.084
+margin_bottom = 92.7105
+custom_colors/font_color = Color( 0.898039, 0.94902, 0.0392157, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Super Duck Guy"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 32.9628
+margin_top = 46.8221
+margin_right = 296.963
+margin_bottom = 62.8221
+custom_colors/font_color = Color( 0.164706, 0.745098, 0.188235, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Thanks for playing"
